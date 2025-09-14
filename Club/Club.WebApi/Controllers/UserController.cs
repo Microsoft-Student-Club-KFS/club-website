@@ -1,6 +1,7 @@
 ﻿using Club.Core.Models;
 using Club.Infrastructure.Repositories;
 using Club.WebApi.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,9 +17,17 @@ public class UserController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public IActionResult AddUser()
     {
         _userService.CreateUser("Test User");
         return Ok();
+    }
+
+    [HttpGet]
+    [Authorize]
+    public IActionResult GetUser()
+    {
+        return Ok("User data");
     }
 }

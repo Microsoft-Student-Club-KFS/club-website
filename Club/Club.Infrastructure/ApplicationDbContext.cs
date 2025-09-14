@@ -9,13 +9,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Club.Infrastructure;
-public class ApplicationDbContext: IdentityDbContext<User, IdentityRole<Guid>, Guid>
+
+public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
     }
 
-    public DbSet<User> Users { get; set; }
     public DbSet<Event> Events { get; set; }
     public DbSet<Project> Projects { get; set; }
     public DbSet<News> News { get; set; }

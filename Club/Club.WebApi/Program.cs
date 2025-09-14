@@ -10,18 +10,15 @@ builder.AddServiceDefaults();
 
 // Add services to the container.
 builder.Services.AddAuthorization();
-builder.Services.AddAuthentication().AddBearerToken();
-
-builder.Services.AddIdentityCore<User>()
-    .AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddApiEndpoints();
+builder.Services.AddIdentityApiEndpoints<User>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection"),
         b => b.MigrationsAssembly("Club.Infrastructure")
-        );
+    );
 });
 
 builder.Services.AddControllers();
@@ -44,7 +41,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapIdentityApi<User>();
+app.MapGroup("/api/auth").MapIdentityApi<User>().WithTags("Authentication");
 
 app.UseAuthorization();
 
