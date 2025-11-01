@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+/* Fluent 2 Design System Color Palette */
+:root {
+  /* Light Mode Colors */
+  --background: #ffffff;
+  --foreground: #242424;
+  
+  /* Fluent 2 Brand Colors (Microsoft Blue) */
+  --brand-primary: #0078d4;
+  --brand-secondary: #0063b1;
+  --brand-tertiary: #004e8c;
+  
+  /* Neutral Colors */
+  --neutral-bg-1: #ffffff;
+  --neutral-bg-2: #fafafa;
+  --neutral-bg-3: #f5f5f5;
+  --neutral-stroke: #e0e0e0;
+  --neutral-stroke-subtle: #f0f0f0;
+  
+  /* Text Colors */
+  --text-primary: #242424;
+  --text-secondary: #424242;
+  --text-tertiary: #616161;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  /* Custom Fluent Colors */
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-secondary: var(--brand-secondary);
+  --color-neutral-bg-1: var(--neutral-bg-1);
+  --color-neutral-bg-2: var(--neutral-bg-2);
+  --color-neutral-bg-3: var(--neutral-bg-3);
+}
+
+/* Dark Mode Colors */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1a1a1a;
+    --foreground: #f5f5f5;
+    
+    /* Fluent 2 Brand Colors (Lighter for dark mode) */
+    --brand-primary: #60a5fa;
+    --brand-secondary: #3b82f6;
+    --brand-tertiary: #2563eb;
+    
+    /* Neutral Colors */
+    --neutral-bg-1: #1a1a1a;
+    --neutral-bg-2: #242424;
+    --neutral-bg-3: #2a2a2a;
+    --neutral-stroke: #3b3b3b;
+    --neutral-stroke-subtle: #2e2e2e;
+    
+    /* Text Colors */
+    --text-primary: #f5f5f5;
+    --text-secondary: #e0e0e0;
+    --text-tertiary: #a3a3a3;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+
+/* Custom Animations */
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(200%) translateY(200%) rotate(45deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+/* Page Transition Fallback */
+.page-transition {
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
