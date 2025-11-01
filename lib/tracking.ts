@@ -40,28 +40,7 @@ export async function trackEvent(
   }
 }
 
-/**
- * Server-side: Log event directly to database
- * Use this for server actions or API routes
- */
-export async function trackEventServer(
-  name: string,
-  payload: TrackingPayload = {}
-): Promise<void> {
-  // Import dynamically to avoid edge runtime issues
-  const { default: db } = await import('@/lib/db');
-  
-  try {
-    await db.analyticsEvent.create({
-      data: {
-        name,
-        payload: JSON.stringify(payload),
-      },
-    });
-  } catch (error) {
-    console.error('Failed to track event on server:', error);
-  }
-}
+// Server-side tracking removed: no database in this project
 
 /**
  * Common event names for consistency

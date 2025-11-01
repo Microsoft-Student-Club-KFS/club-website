@@ -9,7 +9,7 @@ The website is currently running in **static mode** without database dependencie
 - ✅ Responsive design maintained
 - 🔄 Content pages show "Coming Soon" state
 - 🗑️ Admin panel removed from the repository
-- ⏸️ API routes disabled (folder renamed to `api.disabled`)
+- 🗑️ API routes removed from the repository
 
 ## Getting Started
 
