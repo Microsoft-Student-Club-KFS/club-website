@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { useTheme } from '../app/providers';
 import { Text } from '@fluentui/react-components';
+import { ChevronRight24Regular } from '@fluentui/react-icons';
+import SocialLinks from './SocialLinks';
 
 export default function Footer() {
   const { isDark } = useTheme();
@@ -17,68 +19,117 @@ export default function Footer() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* About Section */}
+          {/* About Section (MSC) */}
           <div>
-            <Text size={500} weight="semibold" className="block mb-3">
+            <Text
+              size={500}
+              weight="semibold"
+              className="block mb-3"
+              style={{
+                background: 'linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #ec4899 100%)',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                color: 'transparent',
+              }}
+            >
               MSC Kafr El-Shaikh
             </Text>
-            <Text size={300} className="block text-gray-600 dark:text-gray-400">
-              Microsoft Student Club at Kafr El-Shaikh University. 
-              Empowering students through technology and innovation.
-            </Text>
+            <div
+              className="rounded-2xl p-4 border backdrop-blur-xl"
+              style={{
+                borderColor: isDark ? 'rgba(96,165,250,0.3)' : 'rgba(59,130,246,0.25)',
+                background: isDark
+                  ? 'linear-gradient(135deg, rgba(59,130,246,0.08), rgba(124,58,237,0.08))'
+                  : 'linear-gradient(135deg, rgba(59,130,246,0.06), rgba(124,58,237,0.06))'
+              }}
+            >
+              <Text size={300} className="block text-gray-600 dark:text-gray-400">
+                Microsoft Student Club at Kafr El-Shaikh University. 
+                Empowering students through technology and innovation.
+              </Text>
+            </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <Text size={500} weight="semibold" className="block mb-3">
+            <Text
+              size={500}
+              weight="semibold"
+              className="block mb-3"
+              style={{
+                background: 'linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #ec4899 100%)',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                color: 'transparent',
+              }}
+            >
               Quick Links
             </Text>
-            <div className="flex flex-col space-y-2">
-              <Link href="/events" className="text-sm hover:underline text-gray-600 dark:text-gray-400">
-                Events
-              </Link>
-              <Link href="/projects" className="text-sm hover:underline text-gray-600 dark:text-gray-400">
-                Projects
-              </Link>
-              <Link href="/team" className="text-sm hover:underline text-gray-600 dark:text-gray-400">
-                Team
-              </Link>
-              <Link href="/contact" className="text-sm hover:underline text-gray-600 dark:text-gray-400">
-                Contact Us
-              </Link>
+            <div
+              className="rounded-2xl p-4 border backdrop-blur-xl"
+              style={{
+                borderColor: isDark ? 'rgba(96,165,250,0.3)' : 'rgba(59,130,246,0.25)',
+                background: isDark
+                  ? 'linear-gradient(135deg, rgba(59,130,246,0.08), rgba(124,58,237,0.08))'
+                  : 'linear-gradient(135deg, rgba(59,130,246,0.06), rgba(124,58,237,0.06))'
+              }}
+            >
+              <div className="flex flex-col">
+                {[
+                  { href: '/events', label: 'Events' },
+                  { href: '/projects', label: 'Projects' },
+                  { href: '/team', label: 'Team' },
+                  { href: '/contact', label: 'Contact Us' },
+                ].map((l) => (
+                  <Link
+                    key={l.href}
+                    href={l.href}
+                    className="group text-sm text-gray-600 dark:text-gray-400 px-3 py-2 rounded-lg flex items-center justify-between transition-all hover:bg-white/40 dark:hover:bg-white/5"
+                  >
+                    <span className="opacity-90 group-hover:opacity-100 transition-colors">{l.label}</span>
+                    <ChevronRight24Regular
+                      style={{ fontSize: 18 }}
+                      className="text-gray-400 group-hover:text-[#60a5fa] transition-transform group-hover:translate-x-0.5"
+                    />
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
 
           {/* Connect */}
           <div>
-            <Text size={500} weight="semibold" className="block mb-3">
+            <Text size={500} weight="semibold" className="block mb-3" style={{
+              background: 'linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #ec4899 100%)',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              color: 'transparent',
+            }}>
               Connect With Us
             </Text>
-            <div className="flex flex-col space-y-2">
-              <a 
-                href="https://www.facebook.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-sm hover:underline text-gray-600 dark:text-gray-400"
-              >
-                Facebook
-              </a>
-              <a 
-                href="https://www.linkedin.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-sm hover:underline text-gray-600 dark:text-gray-400"
-              >
-                LinkedIn
-              </a>
-              <a 
-                href="https://github.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-sm hover:underline text-gray-600 dark:text-gray-400"
-              >
-                GitHub
-              </a>
+            <div
+              className="rounded-2xl p-4 border backdrop-blur-xl"
+              style={{
+                borderColor: isDark ? 'rgba(96,165,250,0.3)' : 'rgba(59,130,246,0.25)',
+                background: isDark
+                  ? 'linear-gradient(135deg, rgba(59,130,246,0.08), rgba(124,58,237,0.08))'
+                  : 'linear-gradient(135deg, rgba(59,130,246,0.06), rgba(124,58,237,0.06))'
+              }}
+            >
+              <SocialLinks variant="iconAndLabel" direction="col" gap={12} />
+            </div>
+          </div>
+        </div>
+
+        {/* Social banner for emphasis on small screens */}
+        <div className="mt-8 md:hidden">
+          <div className="rounded-xl p-4 text-center" style={{
+            background: isDark ? 'rgba(96,165,250,0.08)' : 'rgba(59,130,246,0.07)',
+            border: `1px solid ${isDark ? 'rgba(96,165,250,0.25)' : 'rgba(59,130,246,0.2)'}`
+          }}>
+            <Text size={300} weight="semibold" className="block mb-2">Follow MSC on social</Text>
+            <div className="flex justify-center">
+              <SocialLinks gap={16} size={22} />
             </div>
           </div>
         </div>

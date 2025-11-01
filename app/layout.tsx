@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import AnimatedLayout from "@/components/AnimatedLayout";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
@@ -38,6 +39,7 @@ export default function RootLayout({
           <AnimatedLayout>
             {children}
           </AnimatedLayout>
+          <Footer />
         </Providers>
       </body>
     </html>

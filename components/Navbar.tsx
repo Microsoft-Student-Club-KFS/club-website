@@ -19,6 +19,7 @@ import {
   Dismiss24Regular
 } from '@fluentui/react-icons';
 import { useTheme } from '../app/providers';
+import SocialLinks from './SocialLinks';
 
 export default function Navbar() {
   const { isDark, toggleTheme } = useTheme();
@@ -70,8 +71,22 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Right side: Theme Toggle + Mobile Menu Button */}
+          {/* Right side: Social + Theme Toggle + Mobile Menu Button */}
           <div className="flex items-center gap-2">
+            {/* Social links (desktop) */}
+            <div className="hidden md:flex">
+              <div
+                className="rounded-full px-2 py-1 border backdrop-blur-xl"
+                style={{
+                  borderColor: isDark ? 'rgba(96,165,250,0.3)' : 'rgba(59,130,246,0.25)',
+                  background: isDark
+                    ? 'linear-gradient(135deg, rgba(59,130,246,0.08), rgba(124,58,237,0.08))'
+                    : 'linear-gradient(135deg, rgba(59,130,246,0.06), rgba(124,58,237,0.06))'
+                }}
+              >
+                <SocialLinks size={18} gap={10} variant="icon" />
+              </div>
+            </div>
             {/* Theme Toggle */}
             <Button
               appearance="subtle"
@@ -101,6 +116,20 @@ export default function Navbar() {
           }`}
         >
           <div className="flex flex-col gap-2 pt-2">
+            {/* Social links (mobile) */}
+            <div className="px-4 pb-2">
+              <div
+                className="rounded-xl px-3 py-2 border backdrop-blur-xl"
+                style={{
+                  borderColor: isDark ? 'rgba(96,165,250,0.3)' : 'rgba(59,130,246,0.25)',
+                  background: isDark
+                    ? 'linear-gradient(135deg, rgba(59,130,246,0.08), rgba(124,58,237,0.08))'
+                    : 'linear-gradient(135deg, rgba(59,130,246,0.06), rgba(124,58,237,0.06))'
+                }}
+              >
+                <SocialLinks size={22} gap={14} variant="icon" />
+              </div>
+            </div>
             {navLinks.map((link) => {
               const Icon = link.icon;
               return (

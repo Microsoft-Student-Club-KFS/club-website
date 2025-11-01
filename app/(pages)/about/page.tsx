@@ -53,20 +53,20 @@ export default function AboutPage() {
     },
     {
       year: '2024',
-      title: 'Award Recognition',
-      description: 'Received "Best Student Club" award for outstanding contribution to tech education.',
-      icon: Trophy24Regular,
-      color: '#f59e0b',
-      gradient: 'linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%)',
+      title: 'Start of TIP Program',
+      description: 'Launched the Technical Internship Program (TIP) to give members real-world, hands-on experience.',
+      icon: PersonStar24Regular,
+      color: '#06b6d4',
+      gradient: 'linear-gradient(135deg, #06b6d4 0%, #22d3ee 100%)',
       position: 'right'
     },
     {
       year: '2025',
-      title: 'Global Expansion',
-      description: 'Collaborated with international universities and hosted our first global virtual conference.',
+      title: 'Website Launch',
+      description: 'Released our official MSC KFS website to centralize news, events, and resources for our community.',
       icon: Globe24Regular,
-      color: '#10b981',
-      gradient: 'linear-gradient(135deg, #10b981 0%, #34d399 100%)',
+      color: '#2563eb',
+      gradient: 'linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)',
       position: 'left'
     },
     {
@@ -74,17 +74,48 @@ export default function AboutPage() {
       title: 'Future Vision',
       description: 'Planning AI research lab, startup incubator, and reaching 1000+ active members.',
       icon: Target24Regular,
-      color: '#06b6d4',
-      gradient: 'linear-gradient(135deg, #06b6d4 0%, #22d3ee 100%)',
+      color: '#0ea5e9',
+      gradient: 'linear-gradient(135deg, #0ea5e9 0%, #22d3ee 100%)',
       position: 'right'
     }
   ];
 
   const leadership = [
-    { name: 'Ahmed Waly', role: 'Club President', icon: PersonBoard24Regular, color: '#3b82f6', description: 'Leading the club\'s strategic vision and partnerships' },
-    { name: 'Ahmed Dawoud', role: 'TIP Lead', icon: PersonStar24Regular, color: '#8b5cf6', description: 'The Technical Internship Program Lead' },
-    { name: 'Osama Yousef', role: 'TMP Lead', icon: Code24Regular, color: '#ec4899', description: 'The Technical Mentorship Program LEad' },
-    { name: 'Mahmoud Abdellatif', role: 'Operation Lead', icon: PersonSupport24Regular, color: '#10b981', description: 'Managing the operation of the team' }
+    {
+      name: 'Ahmed Waly',
+      role: 'Club President',
+      icon: PersonBoard24Regular,
+      color: '#3b82f6',
+      description: "Leads the club's strategic vision and partnerships."
+    },
+    {
+      name: 'Ahmed Dawoud',
+      role: 'TIP Lead',
+      icon: PersonStar24Regular,
+      color: '#8b5cf6',
+      description: 'Technical Internship Program (TIP) Lead.'
+    },
+    {
+      name: 'Osama Yousef',
+      role: 'TMP Lead',
+      icon: Code24Regular,
+      color: '#ec4899',
+      description: 'Tech Mentorship Program (TMP) Lead.'
+    },
+    {
+      name: 'Mona Eltobgy',
+      role: 'TMP Vice Lead',
+      icon: PersonStar24Regular,
+      color: '#f59e0b',
+      description: 'Supports and co-leads the TMP track.'
+    },
+    {
+      name: 'Mahmoud Abdellatif',
+      role: 'Operations Lead',
+      icon: PersonSupport24Regular,
+      color: '#10b981',
+      description: 'Oversees club operations and logistics.'
+    }
   ];
 
   const stats = [
