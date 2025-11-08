@@ -14,14 +14,14 @@ type ThemeContextType = {
 };
 
 const ThemeContext = createContext<ThemeContextType>({
-  isDark: false,
+  isDark: true,
   toggleTheme: () => {},
 });
 
 export const useTheme = () => useContext(ThemeContext);
 
 export function Providers({ children }: { children: ReactNode }) {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   const toggleTheme = () => {
     setIsDark(!isDark);

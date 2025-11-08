@@ -20,6 +20,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "MSC Kafr El-Shaikh Club",
   description: "Microsoft Student Club - Kafr El-Shaikh University",
+  icons: {
+    icon: '/images/logo.png',
+    apple: '/images/logo.png',
+  },
 };
 
 export default function RootLayout({
