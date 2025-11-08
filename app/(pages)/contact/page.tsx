@@ -48,7 +48,8 @@ export default function ContactPage() {
                 <Chat24Regular style={{ fontSize: '32px', color: 'white' }} />
               </div>
               <Title2 className='mb-3'>Chat on WhatsApp</Title2>
-              <Body1 className='opacity-80 mb-6'>Get instant responses to your questions</Body1>
+              <div />
+              <Body1 className='opacity-80 mb-6'>Get instant responses to your questions</Body1>          <div />
               <a href={scrapedHome.socials.whatsappDirect} target="_blank" rel="noopener noreferrer">
                 <Button
                   appearance='primary'
@@ -77,8 +78,8 @@ export default function ContactPage() {
               }}>
                 <Mail24Regular style={{ fontSize: '32px', color: 'white' }} />
               </div>
-              <Title2 className='mb-3'>Send us an Email</Title2>
-              <Body1 className='opacity-80 mb-6'>For detailed inquiries and official communication</Body1>
+              <Title2 className='mb-3'>Send us an Email</Title2>          <div />
+              <Body1 className='opacity-80 mb-6'>For detailed inquiries and official communication</Body1>          <div />
               <a href={scrapedHome.socials.email}>
                 <Button
                   appearance='primary'
