@@ -124,19 +124,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Social banner for emphasis on small screens */}
-        <div className="mt-8 md:hidden">
-          <div className="rounded-xl p-4 text-center" style={{
-            background: isDark ? 'rgba(96,165,250,0.08)' : 'rgba(59,130,246,0.07)',
-            border: `1px solid ${isDark ? 'rgba(96,165,250,0.25)' : 'rgba(59,130,246,0.2)'}`
-          }}>
-            <Text size={300} weight="semibold" className="block mb-2">Follow MSC on social</Text>
-            <div className="flex justify-center">
-              <SocialLinks gap={16} size={22} />
-            </div>
-          </div>
-        </div>
-
         {/* Copyright */}
         <div className="mt-8 pt-6 border-t" style={{ borderColor: isDark ? '#3b3b3b' : '#e0e0e0' }}>
           <Text size={200} className="block text-center text-gray-500 dark:text-gray-500">
