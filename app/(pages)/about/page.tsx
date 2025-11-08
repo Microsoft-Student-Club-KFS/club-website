@@ -1,8 +1,10 @@
+
 'use client';
 
 import { useState } from 'react';
 import { Title1, Title2, Title3, Body1, Card, Badge } from '@fluentui/react-components';
 import { useTheme } from '@/app/providers';
+import Link from 'next/link';
 import {
   Target24Regular,
   Eye24Regular,
@@ -169,6 +171,40 @@ export default function AboutPage() {
           <Body1 className='text-lg opacity-80 max-w-3xl mx-auto'>
             Empowering the next generation of tech leaders at Kafr El-Shaikh University
           </Body1>
+        </div>
+
+        {/* Explore more (secondary navigation) */}
+        <div className="mb-16">
+          <Card
+            className="p-8 backdrop-blur-xl border"
+            style={{
+              background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.9)',
+              borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)'
+            }}
+          >
+            <Title3 className="mb-4 font-bold">Explore more</Title3>
+            <Body1 className="opacity-80 mb-4">Find more details in these sections:</Body1>
+            <div className="flex flex-wrap gap-3">
+              {[
+                { href: '/resources', label: 'Resources' },
+                { href: '/news', label: 'News' },
+                { href: '/achievements', label: 'Achievements' },
+              ].map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className="px-4 py-2 rounded-lg text-sm font-medium transition-all hover:scale-[1.02] border"
+                  style={{
+                    color: isDark ? '#e0e0e0' : '#424242',
+                    backgroundColor: isDark ? 'rgba(42, 42, 42, 0.6)' : 'rgba(245, 245, 245, 0.8)',
+                    borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'
+                  }}
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </div>
+          </Card>
         </div>
 
         {/* Mission & Vision */}

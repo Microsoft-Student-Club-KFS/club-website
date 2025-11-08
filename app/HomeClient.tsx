@@ -5,6 +5,7 @@ import { ArrowRight24Regular, Book24Regular, People24Regular, Lightbulb24Regular
 import Link from 'next/link';
 import { useTheme } from '@/app/providers';
 import Image from 'next/image';
+import { scrapedHome } from '@/lib/content/scraped';
 
 interface Event {
   id: number;
@@ -65,18 +66,16 @@ export function HomeClient({ recentEvents }: HomeClientProps) {
               </div>
               <div className='flex flex-col gap-3'>
                 <Title1 className='text-3xl md:text-5xl lg:text-6xl font-bold leading-tight'>
-                  Welcome to Microsoft Student Club
+                  {scrapedHome.siteTitle}
                 </Title1>
                 <Title2 className='text-xl md:text-2xl lg:text-3xl opacity-90'>
-                  Kafr El-Shaikh University
+                  {scrapedHome.tagline}
                 </Title2>
               </div>
             </div>
 
             <Body1 className='text-lg md:text-xl opacity-90 max-w-2xl leading-relaxed'>
-              Empowering students to build, innovate, and lead in the world of technology.
-              Join our vibrant community of learners, builders, and innovators shaping the future through
-              collaboration, real-world projects, and continuous learning.
+              {scrapedHome.callToAction}
             </Body1>
             <div className='flex flex-wrap gap-4 mt-12'>
               <Link href='#about'>
@@ -130,6 +129,19 @@ export function HomeClient({ recentEvents }: HomeClientProps) {
                   <span className="relative z-10">Explore Events</span>
                 </button>
               </Link>
+
+              <a href="https://chat.whatsapp.com/DCT6ZhD7cP4DyANHrVLdhU" target="_blank" rel="noopener noreferrer">
+                <button
+                  className='group relative px-8 py-4 rounded-2xl text-base font-bold transition-all duration-300 hover:scale-105 overflow-hidden'
+                  style={{
+                    background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
+                    color: 'white',
+                    boxShadow: '0 8px 32px rgba(34, 197, 94, 0.35)',
+                  }}
+                >
+                  <span className="relative z-10 flex items-center gap-2">Join WhatsApp Community</span>
+                </button>
+              </a>
             </div>
           </div>
         </div>

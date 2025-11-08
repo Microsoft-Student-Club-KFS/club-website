@@ -84,7 +84,16 @@ export default function Navbar() {
                     : 'linear-gradient(135deg, rgba(59,130,246,0.06), rgba(124,58,237,0.06))'
                 }}
               >
-                <SocialLinks size={18} gap={10} variant="icon" />
+                <SocialLinks
+                  size={18}
+                  gap={10}
+                  variant="icon"
+                  includeNames={[
+                    'Instagram',
+                    'LinkedIn',
+                    'WhatsApp Community'
+                  ]}
+                />
               </div>
             </div>
             {/* Theme Toggle */}
@@ -127,7 +136,16 @@ export default function Navbar() {
                     : 'linear-gradient(135deg, rgba(59,130,246,0.06), rgba(124,58,237,0.06))'
                 }}
               >
-                <SocialLinks size={22} gap={14} variant="icon" />
+                <SocialLinks
+                  size={22}
+                  gap={14}
+                  variant="icon"
+                  includeNames={[
+                    'Instagram',
+                    'LinkedIn',
+                    'WhatsApp Community'
+                  ]}
+                />
               </div>
             </div>
             {navLinks.map((link) => {

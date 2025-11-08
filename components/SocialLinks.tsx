@@ -11,6 +11,8 @@ export interface SocialLinksProps {
   variant?: Variant;
   direction?: Direction;
   className?: string;
+  includeNames?: string[]; // optional allowlist of social names to render
+  limit?: number; // optional max number of items to render
 }
 
 const socials = [
@@ -49,10 +51,92 @@ const socials = [
         <circle cx="18.406" cy="5.594" r="1.44"/>
       </svg>
     )
+  },
+  {
+    name: 'YouTube',
+    href: 'https://www.youtube.com/@msc-kfs',
+    color: '#FF0000',
+    shadow: 'rgba(255, 0, 0, 0.35)',
+    svg: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="2" y="5" width="20" height="14" rx="3" ry="3" fill="currentColor" />
+        <polygon points="10,9 16,12 10,15" fill="#fff" />
+      </svg>
+    )
+  },
+  {
+    name: 'X',
+    href: 'https://x.com/MSC_KFS',
+    color: '#000000',
+    shadow: 'rgba(0, 0, 0, 0.35)',
+    svg: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+      </svg>
+    )
+  },
+  {
+    name: 'Telegram',
+    href: 'https://t.me/MLSA1KFS',
+    color: '#26A5E4',
+    shadow: 'rgba(38, 165, 228, 0.35)',
+    svg: (
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+        <path d="M9.032 15.64l-.374 5.28c.535 0 .765-.23 1.042-.505l2.5-2.4 5.177 3.79c.95.524 1.627.25 1.89-.88l3.423-16.034h.001c.303-1.419-.515-1.976-1.44-1.628L1.34 9.77c-1.389.54-1.368 1.316-.236 1.665l5.24 1.636 12.156-7.647c.571-.374 1.091-.167.663.206L9.031 15.64z"/>
+      </svg>
+    )
+  },
+  {
+    name: 'Discord',
+    href: 'https://discord.gg/sc58svZ9u8',
+    color: '#5865F2',
+    shadow: 'rgba(88, 101, 242, 0.35)',
+    svg: (
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+        <path d="M20 4a4 4 0 0 0-3.464 2H7.464A4 4 0 0 0 4 4a4 4 0 0 0-4 4v6a4 4 0 0 0 4 4h1l1.5 2 3-2h5l3 2 1.5-2H20a4 4 0 0 0 4-4V8a4 4 0 0 0-4-4zM8.5 13a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm7 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+      </svg>
+    )
+  },
+  {
+    name: 'WhatsApp Community',
+    href: 'https://chat.whatsapp.com/DCT6ZhD7cP4DyANHrVLdhU',
+    color: '#25D366',
+    shadow: 'rgba(37, 211, 102, 0.35)',
+    svg: (
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+        <path d="M12 2a10 10 0 0 0-8.944 14.56L2 22l5.56-1.056A10 10 0 1 0 12 2zm5.2 14.2c-.22.62-1.266 1.18-1.88 1.22-.48.03-1.08.04-1.74-.108-.4-.09-.92-.3-1.6-.62-2.82-1.34-4.65-4.42-4.79-4.63-.14-.2-1.15-1.53-1.15-2.92 0-1.39.73-2.07.98-2.36.25-.28.55-.35.73-.35h.52c.16 0 .4-.06.62.47.22.53.76 1.84.83 1.98.06.14.1.3.02.48-.08.18-.12.3-.24.46-.12.16-.26.36-.37.49-.12.13-.25.27-.11.5.14.22.62 1.02 1.34 1.65.92.82 1.7 1.08 1.94 1.2.24.12.38.1.52-.06.16-.2.6-.7.76-.94.16-.24.32-.2.54-.12.22.08 1.39.66 1.63.78.24.12.4.18.46.28.06.1.06.58-.14 1.2z"/>
+      </svg>
+    )
+  },
+  {
+    name: 'WhatsApp DM',
+    href: 'https://wa.me/+201063647503',
+    color: '#25D366',
+    shadow: 'rgba(37, 211, 102, 0.35)',
+    svg: (
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+        <path d="M12 2a10 10 0 0 0-8.944 14.56L2 22l5.56-1.056A10 10 0 1 0 12 2z"/>
+        <path d="M16.2 15.2c-.2.6-1.2 1.2-1.8 1.2-.5 0-1.2 0-1.9-.2-.4-.1-.9-.3-1.6-.7-2.6-1.2-4.3-4.1-4.4-4.3-.1-.2-1.1-1.4-1.1-2.8s.7-2 .9-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4-.1.6.4.2.5.7 1.7.8 1.9.1.2.1.3 0 .5-.1.2-.1.3-.2.5-.1.2-.2.3-.4.5-.1.2-.2.2-.1.5.1.2.6 1 .1 1.6.9.8 1.6 1.1 1.9 1.2.2.1.4.1.5-.1.1-.2.6-.7.7-.9.2-.2.3-.2.5-.1.2.1 1.3.6 1.5.7.2.1.4.2.4.3s0 .6-.2 1.2z"/>
+      </svg>
+    )
+  },
+  {
+    name: 'Email',
+    href: 'mailto:info@mlsa-kfs.com',
+    color: '#EA4335',
+    shadow: 'rgba(234, 67, 53, 0.35)',
+    svg: (
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+        <rect x="3" y="5" width="18" height="14" rx="2"/>
+        <path d="M4 7l8 6 8-6" fill="#fff"/>
+      </svg>
+    )
   }
 ];
 
-export default function SocialLinks({ size = 22, gap = 10, variant = 'icon', direction = 'row', className = '' }: SocialLinksProps) {
+export default function SocialLinks({ size = 22, gap = 10, variant = 'icon', direction = 'row', className = '', includeNames, limit }: SocialLinksProps) {
+  const filtered = includeNames ? socials.filter(s => includeNames.includes(s.name)) : socials;
+  const items = typeof limit === 'number' ? filtered.slice(0, Math.max(0, limit)) : filtered;
   return (
     <div
       className={[
@@ -62,7 +146,7 @@ export default function SocialLinks({ size = 22, gap = 10, variant = 'icon', dir
       ].join(' ')}
       style={{ gap }}
     >
-      {socials.map((s) => (
+      {items.map((s) => (
         <a
           key={s.name}
           href={s.href}

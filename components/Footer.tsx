@@ -78,8 +78,11 @@ export default function Footer() {
                 {[
                   { href: '/events', label: 'Events' },
                   { href: '/projects', label: 'Projects' },
-                  { href: '/team', label: 'Team' },
-                  { href: '/contact', label: 'Contact Us' },
+                  { href: '/resources', label: 'Resources' },
+                  { href: '/news', label: 'News' },
+                  { href: '/achievements', label: 'Achievements' },
+                  { href: '/about', label: 'About Us' },
+                  { href: '/contact', label: 'Contact' },
                 ].map((l) => (
                   <Link
                     key={l.href}

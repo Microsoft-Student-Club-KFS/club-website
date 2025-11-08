@@ -45,3 +45,27 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## 📥 Imported External Content
+
+We scraped public, non-authenticated textual content from the live club landing page at https://www.msc-kfs.org/ on 2025-11-08.
+
+Currently only the homepage returns content; subpages (about, achievements, events, news, projects, resources, contact) responded with 404 at scrape time, so placeholders and native authored content remain in this repository.
+
+Centralized scraped snippets live in `lib/content/scraped.ts` to:
+- Keep third-party origin text isolated for future refresh or removal
+- Avoid scattering external strings across multiple components
+- Make provenance & update cadence explicit
+
+If additional pages go live later, extend that module (or create per-section files) and reference them in page components rather than hardcoding raw copied text.
+
+### Attribution & Usage
+All scraped content belongs to Microsoft Student Club - Kafr El-Shaikh. Reuse is confined to this official club website. If content ownership or licensing changes, update/remove `lib/content/scraped.ts` accordingly.
+
+### Updating Scraped Content
+1. Re-run a manual scrape (automated script recommended later)
+2. Diff new text vs existing exports
+3. Update the constants (avoid editorial changes unless intentional)
+4. Document the date of refresh in this section
+
+> Note: Media assets (images, logos) were not programmatically downloaded in this pass; they should be added explicitly under `public/images/` if needed with proper optimization.
