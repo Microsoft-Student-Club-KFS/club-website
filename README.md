@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## 🚀 Current Status: STATIC MODE
+## 🚀 Current Status: STATIC MODE (with club history timeline)
 
 The website is currently running in **static mode** without database dependencies. All pages show "Coming Soon" placeholders.
 
@@ -9,7 +9,7 @@ The website is currently running in **static mode** without database dependencie
 - ✅ Responsive design maintained
 - 🔄 Content pages show "Coming Soon" state
 - 🗑️ Admin panel removed from the repository
-- 🗑️ API routes removed from the repository
+- 🕘 About page timeline renders from curated club history (`lib/clubHistory.ts`)
 
 ## Getting Started
 
@@ -69,3 +69,26 @@ All scraped content belongs to Microsoft Student Club - Kafr El-Shaikh. Reuse is
 4. Document the date of refresh in this section
 
 > Note: Media assets (images, logos) were not programmatically downloaded in this pass; they should be added explicitly under `public/images/` if needed with proper optimization.
+
+## � Club History Timeline
+
+The About page displays a curated timeline of the club's real milestones, sourced from `lib/clubHistory.ts`. This approach keeps the site accurate and stable even when social media platforms are behind login walls or frequently change their markup.
+
+### Updating the Timeline
+
+To add or edit milestones:
+1. Open `lib/clubHistory.ts`
+2. Add/edit entries in the `clubTimeline` array
+3. Include year, date (ISO format), title, description, color, gradient, position, and icon
+4. The page will automatically render the updated timeline
+
+### Future: Automated Social Integration
+
+If you want to automate timeline updates later, consider:
+- **Facebook Graph API** with Page ID and appropriate permissions to fetch "Page Created" date and public posts/events
+- **YouTube Data API** for channel upload history
+- **X/Twitter API v2** for organization tweets
+- **Instagram Graph API** for business account posts
+- **LinkedIn API** for organization updates
+
+Each requires app credentials and OAuth tokens. Until then, manual curation in `lib/clubHistory.ts` is the most reliable source of truth.

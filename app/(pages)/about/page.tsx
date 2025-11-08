@@ -1,8 +1,8 @@
 
 'use client';
 
-import { useState } from 'react';
-import { Title1, Title2, Title3, Body1, Card, Badge } from '@fluentui/react-components';
+import { useEffect, useState } from 'react';
+import { Title1, Title2, Title3, Body1, Card } from '@fluentui/react-components';
 import { useTheme } from '@/app/providers';
 import Link from 'next/link';
 import {
@@ -11,76 +11,58 @@ import {
   Trophy24Regular,
   Rocket24Regular,
   People24Regular,
-  Star24Regular,
-  Calendar24Regular,
   Code24Regular,
   Globe24Regular,
   PersonBoard24Regular,
   PersonStar24Regular,
   PersonSupport24Regular
 } from '@fluentui/react-icons';
+import { getClubTimeline } from '@/lib/clubHistory';
+
+// Map icon string names sent from history module to actual Fluent UI icons
+const iconMap: Record<string, React.ComponentType> = {
+  Rocket24Regular,
+  Code24Regular,
+  People24Regular,
+  PersonStar24Regular,
+  Globe24Regular,
+  Target24Regular,
+  Trophy24Regular,
+  PersonBoard24Regular,
+};
+
+interface DynamicTimelineItem {
+  year: string;
+  title: string;
+  description: string;
+  color: string;
+  gradient: string;
+  position: 'left' | 'right';
+  icon?: React.ComponentType;
+}
 
 export default function AboutPage() {
   const { isDark } = useTheme();
   const [selectedEvent, setSelectedEvent] = useState<number>(0);
   const [hoveredEvent, setHoveredEvent] = useState<number | null>(null);
+  const [dynamicTimeline, setDynamicTimeline] = useState<DynamicTimelineItem[] | null>(null);
 
-  const timelineEvents = [
-    {
-      year: '2023',
-      title: 'Club Foundation',
-      description: 'MSC Kafr El-Shaikh was established with a vision to empower students through technology.',
-      icon: Rocket24Regular,
-      color: '#3b82f6',
-      gradient: 'linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%)',
-      position: 'left'
-    },
-    {
-      year: '2024',
-      title: 'Our First Season',
-      description: 'We officially launched our first season.',
-      icon: Code24Regular,
-      color: '#8b5cf6',
-      gradient: 'linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)',
-      position: 'right'
-    },
-    {
-      year: '2024',
-      title: 'Industry Partnerships',
-      description: 'Formed strategic partnerships with leading tech companies for mentorship and internships.',
-      icon: People24Regular,
-      color: '#ec4899',
-      gradient: 'linear-gradient(135deg, #ec4899 0%, #f472b6 100%)',
-      position: 'left'
-    },
-    {
-      year: '2024',
-      title: 'Start of TIP Program',
-      description: 'Launched the Technical Internship Program (TIP) to give members real-world, hands-on experience.',
-      icon: PersonStar24Regular,
-      color: '#06b6d4',
-      gradient: 'linear-gradient(135deg, #06b6d4 0%, #22d3ee 100%)',
-      position: 'right'
-    },
-    {
-      year: '2025',
-      title: 'Website Launch',
-      description: 'Released our official MSC KFS website to centralize news, events, and resources for our community.',
-      icon: Globe24Regular,
-      color: '#2563eb',
-      gradient: 'linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)',
-      position: 'left'
-    },
-    {
-      year: '2025',
-      title: 'Future Vision',
-      description: 'Planning AI research lab, startup incubator, and reaching 1000+ active members.',
-      icon: Target24Regular,
-      color: '#0ea5e9',
-      gradient: 'linear-gradient(135deg, #0ea5e9 0%, #22d3ee 100%)',
-      position: 'right'
-    }
-  ];
+  // Load curated club history (manual + Facebook references)
+  useEffect(() => {
+    const items = getClubTimeline().map((i) => ({
+      year: i.year,
+      title: i.title,
+      description: i.description,
+      color: i.color,
+      gradient: i.gradient,
+      position: i.position,
+      icon: iconMap[i.icon] || Rocket24Regular,
+    }));
+    setDynamicTimeline(items);
+    setSelectedEvent(0);
+  }, []);
+
+  const timelineEvents = dynamicTimeline || [];
 
   const leadership = [
     {
@@ -277,15 +259,13 @@ export default function AboutPage() {
             {/* Central animated line */}
             <div className="absolute left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 hidden md:block"
               style={{
-                background: `linear-gradient(to bottom, 
-                  ${timelineEvents[0].color} 0%,
-                  ${timelineEvents[1].color} 20%,
-                  ${timelineEvents[2].color} 40%,
-                  ${timelineEvents[3].color} 60%,
-                  ${timelineEvents[4].color} 80%,
-                  ${timelineEvents[5].color} 100%
-                )`,
-                boxShadow: `0 0 20px ${timelineEvents[selectedEvent].color}`,
+                background: (() => {
+                  const n = timelineEvents.length;
+                  if (!n) return 'transparent';
+                  const stops = timelineEvents.map((e, i) => `${e.color} ${Math.round((i / (n - 1)) * 100)}%`).join(', ');
+                  return `linear-gradient(to bottom, ${stops})`;
+                })(),
+                boxShadow: `0 0 20px ${timelineEvents[selectedEvent]?.color || '#3b82f6'}`,
                 transition: 'box-shadow 0.5s ease'
               }}
             />
@@ -294,9 +274,9 @@ export default function AboutPage() {
             <div
               className="absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full hidden md:block transition-all duration-700 ease-out"
               style={{
-                top: `${(selectedEvent / (timelineEvents.length - 1)) * 100}%`,
-                background: timelineEvents[selectedEvent].gradient,
-                boxShadow: `0 0 30px ${timelineEvents[selectedEvent].color}, 0 0 60px ${timelineEvents[selectedEvent].color}`,
+                top: `${(timelineEvents.length > 1 ? (selectedEvent / (timelineEvents.length - 1)) : 0) * 100}%`,
+                background: timelineEvents[selectedEvent]?.gradient || 'linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%)',
+                boxShadow: `0 0 30px ${timelineEvents[selectedEvent]?.color || '#3b82f6'}, 0 0 60px ${timelineEvents[selectedEvent]?.color || '#3b82f6'}`,
                 animation: 'pulse 2s ease-in-out infinite'
               }}
             />
@@ -304,7 +284,7 @@ export default function AboutPage() {
             {/* Timeline Events */}
             <div className="space-y-12 md:space-y-24">
               {timelineEvents.map((event, index) => {
-                const Icon = event.icon;
+                const Icon = event.icon || Rocket24Regular;
                 const isSelected = selectedEvent === index;
                 const isHovered = hoveredEvent === index;
                 const isLeft = event.position === 'left';
@@ -468,24 +448,24 @@ export default function AboutPage() {
             className="mt-12 p-8 md:p-12 backdrop-blur-xl border text-center"
             style={{
               background: isDark
-                ? `linear-gradient(135deg, ${timelineEvents[selectedEvent].color}30 0%, ${timelineEvents[selectedEvent].color}10 100%)`
-                : `linear-gradient(135deg, ${timelineEvents[selectedEvent].color}20 0%, ${timelineEvents[selectedEvent].color}05 100%)`,
-              borderColor: timelineEvents[selectedEvent].color,
-              boxShadow: `0 20px 60px ${timelineEvents[selectedEvent].color}40`,
+                ? `linear-gradient(135deg, ${timelineEvents[selectedEvent]?.color || '#3b82f6'}30 0%, ${timelineEvents[selectedEvent]?.color || '#3b82f6'}10 100%)`
+                : `linear-gradient(135deg, ${timelineEvents[selectedEvent]?.color || '#3b82f6'}20 0%, ${timelineEvents[selectedEvent]?.color || '#3b82f6'}05 100%)`,
+              borderColor: timelineEvents[selectedEvent]?.color || '#3b82f6',
+              boxShadow: `0 20px 60px ${(timelineEvents[selectedEvent]?.color || '#3b82f6')}40`,
             }}
           >
             <div
               className="inline-block px-8 py-3 rounded-full mb-6 text-2xl font-bold text-white"
               style={{
-                background: timelineEvents[selectedEvent].gradient,
-                boxShadow: `0 8px 32px ${timelineEvents[selectedEvent].color}60`,
+                background: timelineEvents[selectedEvent]?.gradient || 'linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%)',
+                boxShadow: `0 8px 32px ${(timelineEvents[selectedEvent]?.color || '#3b82f6')}60`,
               }}
             >
-              {timelineEvents[selectedEvent].year}
+              {timelineEvents[selectedEvent]?.year || ''}
             </div>
-            <Title1 className="mb-4 text-4xl md:text-5xl font-bold">{timelineEvents[selectedEvent].title}</Title1>
+            <Title1 className="mb-4 text-4xl md:text-5xl font-bold">{timelineEvents[selectedEvent]?.title || ''}</Title1>
             <Body1 className="text-xl opacity-90 max-w-3xl mx-auto leading-relaxed">
-              {timelineEvents[selectedEvent].description}
+              {timelineEvents[selectedEvent]?.description || ''}
             </Body1>
           </Card>
         </div>
